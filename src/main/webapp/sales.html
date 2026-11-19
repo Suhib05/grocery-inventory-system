@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sales – GroceryIQ</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="sales">
+<div class="app-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        <div>
+          <div class="page-title" id="pageTitle">Sales</div>
+          <div class="breadcrumb">Home › Sales</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="currentDate" class="topbar-date"></span>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <div id="flashMsg" class="flash-message hidden" role="status">
+        <span class="flash-text"></span>
+        <button class="flash-close" type="button" aria-label="Dismiss">✕</button>
+      </div>
+
+      <section class="card mb-20">
+        <div class="card-header"><span class="card-title">🧾 Record a sale</span></div>
+        <div class="card-body">
+          <form id="saleForm" novalidate>
+            <div class="sale-form-grid">
+              <div class="form-group">
+                <label for="saleProduct">Product *</label>
+                <select id="saleProduct" name="productId" required><option value="">Loading products…</option></select>
+                <span class="form-error hidden" data-error-for="productId"></span>
+              </div>
+              <div class="form-group">
+                <label for="saleQty">Quantity *</label>
+                <input type="number" id="saleQty" name="quantity" min="1" step="1" value="1" required/>
+                <span class="form-error hidden" data-error-for="quantity"></span>
+              </div>
+              <div class="form-group">
+                <label for="saleDate">Date</label>
+                <input type="date" id="saleDate" name="saleDate"/>
+                <span class="form-error hidden" data-error-for="saleDate"></span>
+              </div>
+              <button type="submit" class="btn btn-primary" id="saleSubmit">+ Record sale</button>
+            </div>
+            <p class="sale-hint" id="saleHint" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <div class="stats-grid">
+        <div class="stat-card info">
+          <span class="stat-icon">💵</span>
+          <div class="stat-value" id="sumRevenue">–</div>
+          <div class="stat-label">Revenue</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🧾</span>
+          <div class="stat-value" id="sumTransactions">–</div>
+          <div class="stat-label">Sales</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">📦</span>
+          <div class="stat-value" id="sumUnits">–</div>
+          <div class="stat-label">Units sold</div>
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="card-header">
+          <span class="card-title">Sales history</span>
+          <form class="date-range" id="rangeForm">
+            <div class="form-group"><label for="fromDate">From</label><input type="date" id="fromDate"/></div>
+            <div class="form-group"><label for="toDate">To</label><input type="date" id="toDate"/></div>
+            <button type="submit" class="btn btn-secondary btn-sm">Apply</button>
+          </form>
+        </div>
+        <div class="table-container">
+            <table>
+              <thead><tr><th>Date</th><th>Product</th><th class="text-right">Qty</th><th class="text-right">Unit price</th><th class="text-right">Total</th><th>Recorded by</th><th class="text-right">Actions</th></tr></thead>
+              <tbody id="salesBody"><tr><td colspan="7" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/sales.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard – GroceryIQ</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="dashboard">
+<div class="app-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        <div>
+          <div class="page-title" id="pageTitle">Dashboard</div>
+          <div class="breadcrumb">Home › Overview</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="currentDate" class="topbar-date"></span>
+        <a href="product-form.html" class="btn btn-primary btn-sm">+ Add Product</a>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <div id="flashMsg" class="flash-message hidden" role="status">
+        <span class="flash-text"></span>
+        <button class="flash-close" type="button" aria-label="Dismiss">✕</button>
+      </div>
+
+      <div class="stats-grid">
+        <a class="stat-card" href="products.html">
+          <span class="stat-icon">📦</span>
+          <div class="stat-value" id="statTotal">–</div>
+          <div class="stat-label">Products</div>
+        </a>
+        <a class="stat-card warning" href="products.html?status=LOW_STOCK">
+          <span class="stat-icon">⚠️</span>
+          <div class="stat-value" id="statLow">–</div>
+          <div class="stat-label">Low / Out of Stock</div>
+        </a>
+        <a class="stat-card warning" href="expiry-alerts.html">
+          <span class="stat-icon">⏰</span>
+          <div class="stat-value" id="statExpiringSoon">–</div>
+          <div class="stat-label">Expiring in 7 Days</div>
+        </a>
+        <a class="stat-card danger" href="expiry-alerts.html">
+          <span class="stat-icon">🗑️</span>
+          <div class="stat-value" id="statExpired">–</div>
+          <div class="stat-label">Expired</div>
+        </a>
+        <div class="stat-card">
+          <span class="stat-icon">🏷️</span>
+          <div class="stat-value" id="statStockValue">–</div>
+          <div class="stat-label">Stock Value</div>
+        </div>
+        <a class="stat-card info" href="sales.html">
+          <span class="stat-icon">💵</span>
+          <div class="stat-value" id="statToday">–</div>
+          <div class="stat-label">Today's Revenue</div>
+        </a>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="card full-width" aria-labelledby="chartTitle">
+          <div class="card-header">
+            <span class="card-title" id="chartTitle">💰 Revenue, last 7 days</span>
+            <a href="sales.html" class="btn btn-ghost btn-sm">View sales</a>
+          </div>
+          <div class="chart-wrap" id="revenueChart"></div>
+          <div class="chart-summary">
+            <div><strong id="rev7">–</strong>Last 7 days</div>
+            <div><strong id="rev30">–</strong>Last 30 days</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <span class="card-title">⚠️ Low Stock</span>
+            <a href="products.html?status=LOW_STOCK" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th class="text-right">Qty</th><th class="text-right">Min</th></tr></thead>
+              <tbody id="lowStockTable"><tr><td colspan="4" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <span class="card-title">⏰ Expiring Soon</span>
+            <a href="expiry-alerts.html" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th>Expiry</th><th>When</th></tr></thead>
+              <tbody id="expiringSoonTable"><tr><td colspan="4" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card full-width">
+          <div class="card-header">
+            <span class="card-title">🗑️ Expired, still on the shelf</span>
+            <a href="expiry-alerts.html" class="btn btn-ghost btn-sm">View all</a>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th class="text-right">Qty</th><th>Expired on</th><th>When</th><th class="text-right">Action</th></tr></thead>
+              <tbody id="expiredTable"><tr><td colspan="6" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

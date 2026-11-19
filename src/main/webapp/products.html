@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products – GroceryIQ</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="products">
+<div class="app-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        <div>
+          <div class="page-title" id="pageTitle">Products</div>
+          <div class="breadcrumb">Home › Products</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <a href="api/products/export" id="exportBtn" class="btn btn-secondary btn-sm">⬇ Export CSV</a>
+        <a href="product-form.html" class="btn btn-primary btn-sm">+ Add Product</a>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <div id="flashMsg" class="flash-message hidden" role="status">
+        <span class="flash-text"></span>
+        <button class="flash-close" type="button" aria-label="Dismiss">✕</button>
+      </div>
+
+      <div class="toolbar">
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Search products…" aria-label="Search products"/>
+        </div>
+        <div class="toolbar-filters">
+          <select id="categoryFilter" aria-label="Category"><option value="">All categories</option></select>
+          <select id="statusFilter" aria-label="Status">
+            <option value="">All statuses</option>
+            <option value="IN_STOCK">In Stock</option>
+            <option value="LOW_STOCK">Low Stock</option>
+            <option value="OUT_OF_STOCK">Out of Stock</option>
+            <option value="EXPIRING_SOON">Expiring Soon</option>
+            <option value="EXPIRED">Expired</option>
+          </select>
+          <select id="sortSelect" aria-label="Sort by">
+            <option value="name">Sort: Name</option>
+            <option value="expiry_date">Sort: Expiry date</option>
+            <option value="quantity">Sort: Quantity</option>
+            <option value="price">Sort: Price</option>
+          </select>
+          <select id="orderSelect" aria-label="Order">
+            <option value="asc">↑ Ascending</option>
+            <option value="desc">↓ Descending</option>
+          </select>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="resetBtn" type="button">Reset</button>
+      </div>
+
+      <p class="result-count" aria-live="polite">Showing <strong id="productCount">–</strong> products</p>
+
+      <div class="card">
+        <div class="table-container">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th class="text-right">Qty</th><th class="text-right">Price</th><th class="text-right">Min</th><th>Expiry</th><th>Status</th><th class="text-right">Actions</th></tr></thead>
+              <tbody id="productsBody"><tr><td colspan="8" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

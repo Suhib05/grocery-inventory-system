@@ -1,0 +1,21 @@
+# Build output
+target/
+*.war
+*.class
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+
+oracleJdk-*/

@@ -1,0 +1,38 @@
+# Start everything with:  docker compose up --build
+# Then open http://localhost:8080  (admin / Admin@123)
+services:
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: grocery_inventory
+      MYSQL_USER: ${DB_USER:-grocery_app}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-grocery_pass}
+      TZ: ${TZ:-America/Toronto}   # so CURDATE() in the seed data matches the app's "today"
+    volumes:
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-rootpass}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "3308:3306"   # 3307 on your machine so it won't clash with a local MySQL
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:mysql://db:3306/grocery_inventory?characterEncoding=UTF-8
+      DB_USER: ${DB_USER:-grocery_app}
+      DB_PASSWORD: ${DB_PASSWORD:-grocery_pass}
+      TZ: ${TZ:-America/Toronto}
+    ports:
+      - "8080:8080"
+
+volumes:
+  db-data:

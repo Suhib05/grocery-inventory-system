@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expiry Alerts – GroceryIQ</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="expiry-alerts">
+<div class="app-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        <div>
+          <div class="page-title" id="pageTitle">Expiry Alerts</div>
+          <div class="breadcrumb">Home › Alerts</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <label for="daysSelect" class="sr-only">Look-ahead window</label>
+        <select id="daysSelect">
+          <option value="3">Next 3 days</option>
+          <option value="7" selected>Next 7 days</option>
+          <option value="14">Next 14 days</option>
+          <option value="30">Next 30 days</option>
+        </select>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <div id="flashMsg" class="flash-message hidden" role="status">
+        <span class="flash-text"></span>
+        <button class="flash-close" type="button" aria-label="Dismiss">✕</button>
+      </div>
+
+      <div class="alert alert-danger hidden" id="expiredBanner" role="alert">
+        <span class="alert-icon">🗑️</span>
+        <span id="expiredBannerText"></span>
+      </div>
+
+      <section class="card mb-20">
+        <div class="card-header"><span class="card-title">🗑️ Expired (<span id="expiredCount">0</span>)</span></div>
+        <div class="table-container">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th class="text-right">Qty</th><th class="text-right">Value</th><th>Expired on</th><th>When</th><th class="text-right">Actions</th></tr></thead>
+              <tbody id="expiredTable"><tr><td colspan="7" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+      </section>
+
+      <section class="card">
+        <div class="card-header"><span class="card-title">⏰ Expiring soon (<span id="soonCount">0</span>)</span></div>
+        <div class="table-container">
+            <table>
+              <thead><tr><th>Product</th><th>Category</th><th class="text-right">Qty</th><th class="text-right">Value</th><th>Expires on</th><th>When</th><th class="text-right">Actions</th></tr></thead>
+              <tbody id="soonTable"><tr><td colspan="7" class="table-empty">Loading…</td></tr></tbody>
+            </table>
+          </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/expiry-alerts.js"></script>
+</body>
+</html>

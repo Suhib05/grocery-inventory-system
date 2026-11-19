@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Product – GroceryIQ</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="product-form">
+<div class="app-wrapper">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="mobile-menu-btn" id="menuBtn" type="button" aria-label="Open menu">☰</button>
+        <div>
+          <div class="page-title" id="pageTitle">Add Product</div>
+          <div class="breadcrumb">Home › Products › <span id="crumbAction">Add</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <a href="products.html" class="btn btn-secondary btn-sm">← Back to products</a>
+      </div>
+    </header>
+
+    <main class="page-body">
+      <div id="flashMsg" class="flash-message hidden" role="status">
+        <span class="flash-text"></span>
+        <button class="flash-close" type="button" aria-label="Dismiss">✕</button>
+      </div>
+
+      <div class="card form-card">
+        <div class="card-header"><span class="card-title" id="formTitle">Product details</span></div>
+        <div class="card-body">
+          <div id="formError" class="alert alert-danger hidden" role="alert">
+            <span class="alert-icon">⚠️</span><span id="formErrorText"></span>
+          </div>
+          <form id="productForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label for="name">Product name *</label>
+                <input type="text" id="name" name="name" placeholder="e.g. Whole Milk 2L" maxlength="100" required/>
+                <span class="form-error hidden" data-error-for="name"></span>
+              </div>
+              <div class="form-group">
+                <label for="categoryId">Category *</label>
+                <select id="categoryId" name="categoryId" required><option value="">-- Select a category --</option></select>
+                <span class="form-error hidden" data-error-for="categoryId"></span>
+              </div>
+              <div class="form-group">
+                <label for="price">Price ($) *</label>
+                <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01" required/>
+                <span class="form-error hidden" data-error-for="price"></span>
+              </div>
+              <div class="form-group">
+                <label for="quantity">Quantity in stock *</label>
+                <input type="number" id="quantity" name="quantity" placeholder="0" min="0" step="1" required/>
+                <span class="form-error hidden" data-error-for="quantity"></span>
+              </div>
+              <div class="form-group">
+                <label for="minStock">Minimum stock</label>
+                <input type="number" id="minStock" name="minStock" min="0" step="1" value="10"/>
+                <span class="form-hint">You'll get a low-stock alert at or below this</span>
+                <span class="form-error hidden" data-error-for="minStock"></span>
+              </div>
+              <div class="form-group full">
+                <label for="expiryDate">Expiry date</label>
+                <input type="date" id="expiryDate" name="expiryDate"/>
+                <span class="form-hint">Leave blank for non-perishable items</span>
+                <span class="form-error hidden" data-error-for="expiryDate"></span>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submitBtn">✓ Save product</button>
+              <a href="products.html" class="btn btn-secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/product-form.js"></script>
+</body>
+</html>
