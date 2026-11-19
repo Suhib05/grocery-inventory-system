@@ -1,6 +1,6 @@
 # 🛒 GroceryIQ: Smart Grocery Inventory System
 
-![CI](https://github.com/YOUR_GITHUB_USERNAME/grocery-inventory-system/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Suhib05/grocery-inventory-system/actions/workflows/ci.yml/badge.svg)
 ![Java 17](https://img.shields.io/badge/Java-17-orange)
 ![Jakarta EE](https://img.shields.io/badge/Jakarta%20Servlet-6.0-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-8-4479A1)
@@ -33,7 +33,7 @@ is visible: routing, transactions, authentication, CSRF protection and the UI.
 The only thing you need is [Docker](https://www.docker.com/).
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/grocery-inventory-system.git
+git clone https://github.com/Suhib05/grocery-inventory-system.git
 cd grocery-inventory-system
 docker compose up --build
 ```
